@@ -30,7 +30,7 @@ using namespace std;
 
 bool judge(string& s) {
     int n = s.size();
-    for (int i = 0, j = n- 1; i < j; i++, j--) {
+    for (int i = 0, j = n - 1; i < j; i++, j--) {
         if (s[i] == s[j]) continue;
         else {
             if ((s[i] == 'w' && s[j] == 'v' && s[j-1] == 'v') || (s[i] == 'm' && string("nu").find(s[j]) != string::npos && string("nu").find(s[j-1]) != string::npos)) j--;
