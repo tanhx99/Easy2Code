@@ -7,7 +7,7 @@
 #include <cmath>
 using namespace std;
 
-
+// 这个版本只过了18%
 int main() {
     int n, k;
     cin >> n >> k;
@@ -26,7 +26,7 @@ int main() {
         double num = (k - ((n-1)/3+1)) / ((n-1)/3.0);
         int m = ceil(num / 2);
         minCost += m * (n-1)/3;
-    } else if (n%3 == 2) {
+    } else {
         minCost = (n-2) / 3 + 1;
         double num = (k - ((n-2)/3+1)) / ((n-2)/3.0*2 + 1);
         minCost += floor(num);
