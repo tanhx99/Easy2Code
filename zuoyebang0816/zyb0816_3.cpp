@@ -6,7 +6,9 @@
 // 输出描述
 // 最后留下的是原来的第7号
 #include <bits/stdc++.h>
+
 using namespace std;
+
 int main() {
     int n;
     cin >> n;
