@@ -19,7 +19,7 @@ vector<Edge> E[maxn];
 long long res = 0;
 long long pre[maxn];
 
-void kaishi(int x) {
+void kaishi(int x) {  // 记录前缀最大值
     int sum = E[x].size();
     pre[0] = E[x][0].value;
     for (int i = 1; i < sum; i++) {
@@ -27,7 +27,7 @@ void kaishi(int x) {
     }
 }
 
-int get(int st, long long last) {
+int get(int st, long long last) {  // 二分选择最右面的小于等于last的值
     int l = 0, r = E[st].size() - 1, ans = -1;
     while (l <= r) {
         int mid = (l + r) >> 1;
@@ -43,7 +43,7 @@ int get(int st, long long last) {
 
 long long function(int x, long long last) {
     long long ans = 0;
-    for (int i = E[x].size() - 1; i > 0; i--) {
+    for (int i = E[x].size() - 1; i > 0; i--) {  // 时间从大到小枚举，这样才能用二分和前缀最大值的结果
         int id = get(x, last - E[x][i].time);
         id = min(id, i - 1);
         if (id < 0) {
@@ -85,7 +85,7 @@ int main() {
     }
     
     for (int i = 1; i <= n; i++) {
-        if (E[i].size() < 2) {
+        if (E[i].size() < 2) {  // 枚举的点是中间的点，至少有两个点能到这个点
             continue;
         }
         sort(E[i].begin(), E[i].end(), [](const Edge& e1, const Edge& e2) {
