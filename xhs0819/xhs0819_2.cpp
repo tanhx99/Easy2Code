@@ -28,6 +28,9 @@
 #include <iostream>
 using namespace std;
 
+// 这里是双指针直接判断，感觉比较麻烦。
+// 可以转换成统一的形式，之后再判断是否回文。
+// 如果为bdqp，统一转换为b；如果为w，转为vv；如果为n，转为u；如果为m，转为uu
 bool judge(string& s) {
     int n = s.size();
     for (int i = 0, j = n - 1; i < j; i++, j--) {
