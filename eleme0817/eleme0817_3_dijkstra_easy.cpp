@@ -19,7 +19,8 @@
 // 输出
 // 6
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ void dijkstra(vector<vector<int>> &graph, int startNode, vector<int> &distances)
                 minNode = j;
             }
         }
+
         if (minNode == -1) {
             break; // 所有节点都已访问过或不可达
         }
