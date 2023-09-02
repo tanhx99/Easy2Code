@@ -1,16 +1,16 @@
 //
-// Created by Ì·º£öÎ on 2023/8/30.
+// Created by è°­æµ·é‘« on 2023/8/30.
 //
 
 #include <iostream>
 using namespace std;
 
-void getNext(int* next, const string& p) {  // »ñÈ¡nextÊı×é£¨Æ¥Åä´®£©
+void getNext(int* next, const string& p) {  // è·å–nextæ•°ç»„ï¼ˆåŒ¹é…ä¸²ï¼‰
     int j = 0;
     next[0] = 0;
     for(int i = 1; i < p.size(); i++) {
-        while (j > 0 && p[i] != p[j]) { // jÒª±£Ö¤´óÓÚ0£¬ÒòÎªÏÂÃæÓĞÈ¡j-1×÷ÎªÊı×éÏÂ±êµÄ²Ù×÷
-            j = next[j - 1]; // ×¢ÒâÕâÀï£¬ÊÇÒªÕÒÇ°Ò»Î»µÄ¶ÔÓ¦µÄ»ØÍËÎ»ÖÃÁË
+        while (j > 0 && p[i] != p[j]) { // jè¦ä¿è¯å¤§äº0ï¼Œå› ä¸ºä¸‹é¢æœ‰å–j-1ä½œä¸ºæ•°ç»„ä¸‹æ ‡çš„æ“ä½œ
+            j = next[j - 1]; // æ³¨æ„è¿™é‡Œï¼Œæ˜¯è¦æ‰¾å‰ä¸€ä½çš„å¯¹åº”çš„å›é€€ä½ç½®äº†
         }
         if (p[i] == p[j]) {
             j++;
@@ -19,7 +19,7 @@ void getNext(int* next, const string& p) {  // »ñÈ¡nextÊı×é£¨Æ¥Åä´®£©
     }
 }
 
-int match(string s, string p) { // ÎÄ±¾´®ÖĞÊÇ·ñ³öÏÖÁËÆ¥Åä´®£¬³öÏÖÔò·µ»ØµÚÒ»¸ö×Ö·ûµÄÎ»ÖÃÏÂ±ê£¬Î´³öÏÖÔò·µ»Ø-1
+int match(string s, string p) { // æ–‡æœ¬ä¸²ä¸­æ˜¯å¦å‡ºç°äº†åŒ¹é…ä¸²ï¼Œå‡ºç°åˆ™è¿”å›ç¬¬ä¸€ä¸ªå­—ç¬¦çš„ä½ç½®ä¸‹æ ‡ï¼Œæœªå‡ºç°åˆ™è¿”å›-1
     if (p.size() == 0) {
         return 0;
     }
@@ -34,7 +34,7 @@ int match(string s, string p) { // ÎÄ±¾´®ÖĞÊÇ·ñ³öÏÖÁËÆ¥Åä´®£¬³öÏÖÔò·µ»ØµÚÒ»¸ö×Ö·
             j++;
         }
         if (j == p.size() ) {
-            return i - p.size() + 1;
+            return (i - p.size() + 1);
         }
     }
     return -1;
@@ -42,13 +42,13 @@ int match(string s, string p) { // ÎÄ±¾´®ÖĞÊÇ·ñ³öÏÖÁËÆ¥Åä´®£¬³öÏÖÔò·µ»ØµÚÒ»¸ö×Ö·
 
 
 int main() {
-    string s = "bacbababaabcbab";   // ÎÄ±¾´®
-    string p = "ababaa";   // Æ¥Åä´®£¨»òÕß½ĞÄ£Ê½´®£©
+    string s = "bacbababaabcbab";   // æ–‡æœ¬ä¸²
+    string p = "ababaa";   // åŒ¹é…ä¸²ï¼ˆæˆ–è€…å«æ¨¡å¼ä¸²ï¼‰
     int m = p.size();
     int next[m];
     getNext(next, p);
 
-    cout << "Æ¥Åä´®pµÄnextÊı×é£º";
+    cout << "åŒ¹é…ä¸²pçš„nextæ•°ç»„ï¼š";
     for (int idx: next) cout << idx << ' ';
     cout << endl;
 
