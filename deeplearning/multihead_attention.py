@@ -21,7 +21,7 @@ class MultiHeadAttention(nn.Module):
         x = x.view(batch_size, -1, self.num_heads, self.d_k)
         return x.transpose(1, 2)
 
-    def forward(self, x, key_padding_mask=None):
+    def forward(self, x, key_padding_mask=None, attn_mask=None):
         batch_size = x.size(0)
         Q = self.W_q(x)
         K = self.W_k(x)
@@ -32,6 +32,9 @@ class MultiHeadAttention(nn.Module):
         V = self.split_heads(V, batch_size)
 
         scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.d_k)
+        if attn_mask is not None:
+            attn_mask = attn_mask.unsqueeze(0).unsqueeze(1)
+            scores = scores.masked_fill(attn_mask == 0, -1e9)
         if key_padding_mask is not None:
             key_padding_mask = key_padding_mask.unsqueeze(1).unsqueeze(2)
             scores = scores.masked_fill(key_padding_mask == 0, -1e9)
@@ -58,6 +61,9 @@ key_padding_mask = torch.zeros(batch_size, seq_length)
 for i in range(batch_size):
     key_padding_mask[i, :random_lens[i]] = 1
 
+# masked multi-head attention
+attn_mask = torch.tril(torch.ones(seq_length, seq_length))
+
 attention_layer = MultiHeadAttention(d_model, num_heads)
-output = attention_layer(input, key_padding_mask)
+output = attention_layer(input, key_padding_mask, attn_mask)
 print("Output shape:", output.shape)  # [16, 20, 768]
