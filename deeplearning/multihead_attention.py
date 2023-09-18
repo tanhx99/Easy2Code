@@ -60,4 +60,4 @@ for i in range(batch_size):
 
 attention_layer = MultiHeadAttention(d_model, num_heads)
 output = attention_layer(input, mask)
-print("Output shape:", output.shape)
+print("Output shape:", output.shape)  # [16, 20, 768]
